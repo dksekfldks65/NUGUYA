@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.gamPlatForm.mapper.faceWritingMapper">
+
+    <insert id="insertWriting" parameterType="faceWritingDto">
+    	/* com.gamPlatForm.mapper.faceWritingMapper.insertWriting */
+    	INSERT INTO FACE_WRITING ( 
+    								   WRITING_DIV_CD 
+    							     , TITLE 
+    								 , ANSWER1 
+    								 , ANSWER2 
+    								 , ANSWER3
+    								 , ANSWER4
+    								 , ANSWER5
+    								 , ANSWER6
+    								 , ANSWER7
+    								 , ANSWER8
+    								 , ANSWER9
+    								 , ANSWER10
+    								 , RAND_ANSWER
+    								 , REGPE_ID
+    								 , MODPE_ID
+    								 , REG_DTS
+    								 , MOD_DTS
+    							  ) 
+    				     VALUES   (
+    				                   #{writing_div_cd}
+    				                 , #{title}
+    				                 , #{answer1}
+    				                 , #{answer2}
+    				                 , #{answer3}
+    				                 , #{answer4}
+    				                 , #{answer5}
+    				                 , #{answer6}
+    				                 , #{answer7}
+    				                 , #{answer8}
+    				                 , #{answer9}
+    				                 , #{answer10}
+    				                 , #{rand_answer}
+    				                 , #{user_id}
+    				                 , #{user_id}
+    				                 , NOW()
+    				                 , NOW()
+    				              )
+		<selectKey keyProperty="writing_no" resultType="int" order="AFTER">
+    		SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <insert id="insertWritingImg" parameterType="faceWritingDto">
+    	/* com.gamPlatForm.mapper.faceWritingMapper.insertWritingImg */
+    	INSERT INTO FACE_IMG_PATH (
+    	                               WRITING_NO
+    	                             , TITLE_IMG_PATH
+    	                             , ORI_IMG_PATH1
+    	                             , ORI_IMG_PATH2
+    	                             , ORI_IMG_PATH3
+    	                             , ORI_IMG_PATH4
+    	                             , ORI_IMG_PATH5
+    	                             , ORI_IMG_PATH6
+    	                             , ORI_IMG_PATH7
+    	                             , ORI_IMG_PATH8
+    	                             , ORI_IMG_PATH9
+    	                             , ORI_IMG_PATH10
+    	                             , COMPO_IMG_PATH1
+    	                             , COMPO_IMG_PATH2
+    	                             , COMPO_IMG_PATH3
+    	                             , COMPO_IMG_PATH4
+    	                             , COMPO_IMG_PATH5
+    	                             , COMPO_IMG_PATH6
+    	                             , COMPO_IMG_PATH7
+    	                             , COMPO_IMG_PATH8
+    	                             , COMPO_IMG_PATH9
+    	                             , COMPO_IMG_PATH10
+    	                             , REGPE_ID
+    	                             , MODPE_ID
+    	                             , REG_DTS
+    	                             , MOD_DTS
+    	                          ) 
+    	                 VALUES   (
+    	                               #{writing_no}
+    	                             , #{title_img_path}
+    	                             , #{ori_img_path1}
+    	                             , #{ori_img_path2}
+    	                             , #{ori_img_path3}
+    	                             , #{ori_img_path4}
+    	                             , #{ori_img_path5}
+    	                             , #{ori_img_path6}
+    	                             , #{ori_img_path7}
+    	                             , #{ori_img_path8}
+    	                             , #{ori_img_path9}
+    	                             , #{ori_img_path10}
+    	                             , #{compo_img_path1}
+    	                             , #{compo_img_path2}
+    	                             , #{compo_img_path3}
+    	                             , #{compo_img_path4}
+    	                             , #{compo_img_path5}
+    	                             , #{compo_img_path6}
+    	                             , #{compo_img_path7}
+    	                             , #{compo_img_path8}
+    	                             , #{compo_img_path9}
+    	                             , #{compo_img_path10}
+    	                             , #{user_id}
+    	                             , #{user_id}
+    	                             , NOW()
+    	                             , NOW()
+    	                          ) 
+    </insert>
+    
+ 	<select id="getMainPageFaceWritingList" parameterType="faceWritingDto" resultType="faceWritingDto">
+ 		/* com.gamPlatForm.mapper.faceWritingMapper.getMainPageFaceWritingList */
+ 		<![CDATA[
+		SELECT *
+		FROM   (
+				SELECT  *
+				FROM    (
+						SELECT  @ROWNUM:=@ROWNUM+1 AS RNUM
+						      , F.*
+						FROM   (
+								   SELECT	FW.WRITING_NO
+								          , FW.TITLE
+								          , FW.WRITING_DIV_CD
+								          , FIP.TITLE_IMG_PATH
+								          , FW.REGPE_ID
+								          , FW.REG_DTS 
+								   FROM     FACE_WRITING FW
+								          , FACE_IMG_PATH FIP
+								   WHERE    1 = 1
+								   AND      FW.USE_YN = 'Y'
+								   AND		FIP.WRITING_NO = FW.WRITING_NO
+						       ) F
+						       , ( SELECT @ROWNUM := 0 ) R
+						WHERE 1 = 1
+						ORDER BY REG_DTS DESC
+					) A
+				WHERE 1 = 1
+				AND   A.RNUM <= #{end}
+		       ) B
+		WHERE 1 = 1
+		AND   B.RNUM > #{start}
+		]]>
+    </select>
+
+</mapper>
