@@ -2,7 +2,7 @@ package com.gamePlatForm.dto;
 
 import java.util.Date;
 
-public class FaceWritingDto {
+public class FaceWritingDto extends BaseDto{
 
 	private int    writing_no;            //게시글 번호
 	private String writing_div_cd;        //게시글 구분코드 10: 얼굴매칭
@@ -18,10 +18,6 @@ public class FaceWritingDto {
 	private String answer9;				  //정답9
 	private String answer10;  			  //정답10
 	private String rand_answer;			  //랜덤 보기
-	private String regpe_id;			  //등록자
-	private	String modpe_id;			  //변경자
-	private Date   reg_dts;				  //등록일
-	private Date   mod_dts;				  //변경일
 	
 	private String title_img_path;        //제목 이미지 경로
 	private String ori_img_path1;         //원본 이미지 경로1
@@ -47,28 +43,6 @@ public class FaceWritingDto {
 	private String compo_img_path10;      //합성 이미지 경로10
 	private String user_id;               //유저아이디
 	
-	private int    start;                 //페이지 결과 시작 번호
-	private int    end;                   //페이지 결과 마지막 번호
-	private int    page;                  //페이지 번호
-	
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
-	public int getEnd() {
-		return end;
-	}
-	public void setEnd(int end) {
-		this.end = end;
-	}
 	public int getWriting_no() {
 		return writing_no;
 	}
@@ -152,30 +126,6 @@ public class FaceWritingDto {
 	}
 	public void setRand_answer(String rand_answer) {
 		this.rand_answer = rand_answer;
-	}
-	public String getRegpe_id() {
-		return regpe_id;
-	}
-	public void setRegpe_id(String regpe_id) {
-		this.regpe_id = regpe_id;
-	}
-	public String getModpe_id() {
-		return modpe_id;
-	}
-	public void setModpe_id(String modpe_id) {
-		this.modpe_id = modpe_id;
-	}
-	public Date getReg_dts() {
-		return reg_dts;
-	}
-	public void setReg_dts(Date reg_dts) {
-		this.reg_dts = reg_dts;
-	}
-	public Date getMod_dts() {
-		return mod_dts;
-	}
-	public void setMod_dts(Date mod_dts) {
-		this.mod_dts = mod_dts;
 	}
 	public String getTitle_img_path() {
 		return title_img_path;

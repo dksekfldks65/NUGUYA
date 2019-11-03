@@ -30,5 +30,10 @@ public class FaceWritingDao {
     public List<FaceWritingDto> getMainPageFaceWritingList(FaceWritingDto faceWritingDto){
     	return sqlSession.selectList(Namespace+".getMainPageFaceWritingList", faceWritingDto);
     }
+    
+    //메인페이지 한번에 불러오기 
+    public List<FaceWritingDto> getMainFaceWritingList(){
+    	return sqlSession.selectList(Namespace+".getMainFaceWritingList");
+    }
 	
 }

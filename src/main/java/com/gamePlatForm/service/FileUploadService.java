@@ -14,12 +14,12 @@ public class FileUploadService {
 	// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
 	
 	//리눅스
-	//private static final String SAVE_PATH =  "/upload";
-	//private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps";
+	private static final String SAVE_PATH =  "\\nuguya";
+	private static final String PREFIX_URL = "\\home\\ubuntu\\tomcat8\\webapps";
 	
 	//윈도우
-	private static final String SAVE_PATH =  "/nuguya";
-	private static final String PREFIX_URL = "C:\\";
+	//private static final String SAVE_PATH =  "/nuguya";
+	//private static final String PREFIX_URL = "C:\\";
 	
 	public String restore(MultipartFile multipartFile) {
 		String url = null;

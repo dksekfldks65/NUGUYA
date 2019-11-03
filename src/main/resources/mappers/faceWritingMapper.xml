@@ -143,5 +143,23 @@
 		AND   B.RNUM > #{start}
 		]]>
     </select>
+    
+    <select id="getMainFaceWritingList" resultType="faceWritingDto">
+    	/* 메인페이지 한번에 불러오기 com.gamPlatForm.mapper.faceWritingMapper.getMainPageFaceWritingList */
+    	<![CDATA[
+    	SELECT  FW.WRITING_NO
+	          , FW.TITLE
+	          , FW.WRITING_DIV_CD
+	          , FIP.TITLE_IMG_PATH
+	          , FW.REGPE_ID
+	          , FW.REG_DTS 
+    	FROM	FACE_WRITING FW
+			  , FACE_IMG_PATH FIP
+    	WHERE	1 = 1
+    	AND		FW.USE_YN = 'Y'
+		AND		FIP.WRITING_NO = FW.WRITING_NO
+		ORDER BY REG_DTS DESC
+    	]]>
+    </select>
 
 </mapper>

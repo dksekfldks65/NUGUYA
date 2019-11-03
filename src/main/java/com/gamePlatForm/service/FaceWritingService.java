@@ -99,8 +99,8 @@ public class FaceWritingService {
      */
     public List<FaceWritingDto> getMainPageFaceWritingList(FaceWritingDto faceWritingDto) throws Exception{
     	
-    	int start = (faceWritingDto.getPage()-1)*page_size;
-    	int end   = faceWritingDto.getPage()*page_size;
+    	int start = (faceWritingDto.getPage_num()-1)*page_size;
+    	int end   = faceWritingDto.getPage_num()*page_size;
 
     	faceWritingDto.setStart(start);
     	faceWritingDto.setEnd(end);
@@ -111,6 +111,19 @@ public class FaceWritingService {
     		pagingFaceWritingList = faceWritingDao.getMainPageFaceWritingList(faceWritingDto);
     	} catch(Exception e) {
     		System.err.println(e.getMessage());
+    	}
+    	
+    	return pagingFaceWritingList;
+    }
+    
+    public List<FaceWritingDto> getMainFaceWritingList() throws Exception{
+    	
+    	List<FaceWritingDto> pagingFaceWritingList = new ArrayList<FaceWritingDto>();
+    	
+    	try {
+    		pagingFaceWritingList = faceWritingDao.getMainFaceWritingList();
+    	} catch(Exception e) {
+    		
     	}
     	
     	return pagingFaceWritingList;
