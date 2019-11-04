@@ -22,8 +22,6 @@ public class FaceWritingService {
 	
 	@Autowired FileUploadService fileUploadService;
 	
-	private static final int page_size = 5;
-	
     /*
      ** 게시글 작성
      */
@@ -95,12 +93,12 @@ public class FaceWritingService {
     }
     
     /*
-     ** 메인페이지 게시글 조회
+     ** 메인페이지 게시글 페이징 조회
      */
     public List<FaceWritingDto> getMainPageFaceWritingList(FaceWritingDto faceWritingDto) throws Exception{
     	
-    	int start = (faceWritingDto.getPage_num()-1)*page_size;
-    	int end   = faceWritingDto.getPage_num()*page_size;
+    	int start = (faceWritingDto.getPage_num()-1)*faceWritingDto.getPage_size();
+    	int end   = faceWritingDto.getPage_num()*faceWritingDto.getPage_size();
 
     	faceWritingDto.setStart(start);
     	faceWritingDto.setEnd(end);
@@ -116,6 +114,9 @@ public class FaceWritingService {
     	return pagingFaceWritingList;
     }
     
+    /*
+     ** 메인페이지 게시글 조회
+     */
     public List<FaceWritingDto> getMainFaceWritingList() throws Exception{
     	
     	List<FaceWritingDto> pagingFaceWritingList = new ArrayList<FaceWritingDto>();
@@ -127,6 +128,19 @@ public class FaceWritingService {
     	}
     	
     	return pagingFaceWritingList;
+    }
+    
+    /*
+     ** 메인페이지 게시글 조회
+     */
+    public FaceWritingDto getFaceWritingDto(FaceWritingDto faceWritingDto) throws Exception{
+    	
+    	try {
+    		faceWritingDto = faceWritingDao.getFaceWritingDto(faceWritingDto);
+    	} catch(Exception e){
+    		System.err.println(e.getMessage());
+    	}
+    	return faceWritingDto;
     }
 	
 }

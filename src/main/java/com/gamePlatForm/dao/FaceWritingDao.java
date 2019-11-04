@@ -35,5 +35,9 @@ public class FaceWritingDao {
     public List<FaceWritingDto> getMainFaceWritingList(){
     	return sqlSession.selectList(Namespace+".getMainFaceWritingList");
     }
+    
+    public FaceWritingDto getFaceWritingDto(FaceWritingDto faceWritingDto) {
+    	return sqlSession.selectOne(Namespace + ".getFaceWritingDto", faceWritingDto);
+    }
 	
 }

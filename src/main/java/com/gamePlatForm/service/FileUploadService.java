@@ -14,12 +14,12 @@ public class FileUploadService {
 	// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
 	
 	//리눅스
-	private static final String SAVE_PATH =  "\\nuguya";
-	private static final String PREFIX_URL = "\\home\\ubuntu\\tomcat8\\webapps";
+	//private static final String SAVE_PATH =  "/nuguyaUpload";
+	//private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps";
 	
 	//윈도우
-	//private static final String SAVE_PATH =  "/nuguya";
-	//private static final String PREFIX_URL = "C:\\";
+	private static final String SAVE_PATH =  "nuguya";
+	private static final String PREFIX_URL = "C:\\";
 	
 	public String restore(MultipartFile multipartFile) {
 		String url = null;
@@ -39,7 +39,7 @@ public class FileUploadService {
 			System.out.println("saveFileName : " + saveFileName);
 			
 			writeFile(multipartFile, saveFileName);
-			url = SAVE_PATH + "/" + saveFileName;
+			url = PREFIX_URL + SAVE_PATH + "/" + saveFileName;
 		}
 		catch (IOException e) {
 			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만

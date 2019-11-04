@@ -18,7 +18,7 @@ import com.gamePlatForm.dto.FaceWritingDto;
 import com.gamePlatForm.service.FaceWritingService;
 
 /**
- * 게시글 작성 컨트롤러
+ * 메인페이지 컨트롤러
  * @ author : GOOHOON
  * @ version 1.0
  */
