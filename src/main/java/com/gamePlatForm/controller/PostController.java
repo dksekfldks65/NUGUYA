@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gamePlatForm.dto.FaceWritingDto;
 import com.gamePlatForm.service.FaceWritingService;
@@ -43,14 +44,15 @@ public class PostController {
      ** 게시글 작성
      */
     @RequestMapping(value="/insertWriting", method = RequestMethod.POST)
-    public String insertWriting(HttpSession session, FaceWritingDto faceWritingDto, @RequestParam("title_img_file") MultipartFile title_img_file
-    	,@RequestParam(required=false) List<MultipartFile> ori_img_files, @RequestParam(required=false) List<MultipartFile> compo_img_files) throws Exception{
+    public String insertWriting(HttpServletRequest request, HttpSession session, FaceWritingDto faceWritingDto) throws Exception{
     	
     	faceWritingDto.setUser_id(session.toString()); //유저 아이디 세팅
     	
-    	faceWritingService.insertWriting(faceWritingDto, title_img_file, ori_img_files, compo_img_files);
+    	MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
     	
-    	return "/write";
+    	faceWritingService.insertWriting(faceWritingDto, multipartRequest);
+    	
+    	return "/index";
     }
     
 }

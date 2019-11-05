@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gamePlatForm.dao.FaceWritingDao;
 import com.gamePlatForm.dto.FaceWritingDto;
@@ -25,61 +26,89 @@ public class FaceWritingService {
     /*
      ** 게시글 작성
      */
-    public void insertWriting(FaceWritingDto faceWritingDto, MultipartFile title_img_file, List<MultipartFile> ori_img_files, List<MultipartFile> compo_img_files) throws Exception{
+    public void insertWriting(FaceWritingDto faceWritingDto, MultipartHttpServletRequest multipartRequest) throws Exception{
     	
     	try {
     		//제목 이미지 업로드 및 경로 세팅
-    		String title_img_path = fileUploadService.restore(title_img_file);
+    		String title_img_path = fileUploadService.restore(multipartRequest.getFile("title_img_file"));
     		faceWritingDto.setTitle_img_path(title_img_path);
     		
-    		//원본, 합성 이미지 업로드 및 경로 세팅, 원본과 합성이미지의 개수는 같음
-    		int len = 0;
-    		int imgFilesSize = ori_img_files.size();
-    		for(int j=0;j<imgFilesSize;j++) {
-    			if(!ori_img_files.get(j).isEmpty()) {
-    				len++;
+    		List<MultipartFile> oriImgFile   = multipartRequest.getFiles("ori_img_file");
+    		List<MultipartFile> compoImgFile = multipartRequest.getFiles("compo_img_file");
+    		
+    		int oriImgFileSize   = oriImgFile.size();
+    		int compoImgFileSize = compoImgFile.size();
+    		
+    		int oriLen   = 0;
+    		int compoLen = 0;
+    		
+    		for(int j=0;j<oriImgFileSize;j++) {
+    			if(!oriImgFile.get(j).isEmpty()) {
+    				oriLen++;
     			} else {
     				break;
     			}
     		}
     		
-    		for(int i=1;i<=len;i++) {
-    			
-    			String ori_img_path   = fileUploadService.restore(ori_img_files.get(i-1));
-    			String compo_img_path = fileUploadService.restore(compo_img_files.get(i-1));
+    		for(int j=0;j<compoImgFileSize;j++) {
+    			if(!compoImgFile.get(j).isEmpty()) {
+    				compoLen++;
+    			} else {
+    				break;
+    			}
+    		}
+    		
+    		for(int i=1;i<=oriLen;i++) {
+    			String ori_img_path   = fileUploadService.restore(oriImgFile.get(i-1));
     			
     			if(i == 1) {
     				faceWritingDto.setOri_img_path1(ori_img_path);
-    				faceWritingDto.setCompo_img_path1(compo_img_path);
     			} else if(i == 2) {
     				faceWritingDto.setOri_img_path2(ori_img_path);
-    				faceWritingDto.setCompo_img_path2(compo_img_path);
     			} else if(i == 3) {
     				faceWritingDto.setOri_img_path3(ori_img_path);
-    				faceWritingDto.setCompo_img_path3(compo_img_path);
     			} else if(i == 4) {
-    				faceWritingDto.setOri_img_path4(ori_img_path);
-    				faceWritingDto.setCompo_img_path4(compo_img_path);    				
+    				faceWritingDto.setOri_img_path4(ori_img_path); 				
     			} else if(i == 5) {
     				faceWritingDto.setOri_img_path5(ori_img_path);
-    				faceWritingDto.setCompo_img_path5(compo_img_path);
     			} else if(i == 6) {
     				faceWritingDto.setOri_img_path6(ori_img_path);
-    				faceWritingDto.setCompo_img_path6(compo_img_path);
     			} else if(i == 7) {
     				faceWritingDto.setOri_img_path7(ori_img_path);
-    				faceWritingDto.setCompo_img_path7(compo_img_path);
     			} else if(i == 8) {
     				faceWritingDto.setOri_img_path8(ori_img_path);
-    				faceWritingDto.setCompo_img_path8(compo_img_path);
     			} else if(i == 9) {
     				faceWritingDto.setOri_img_path9(ori_img_path);
-    				faceWritingDto.setCompo_img_path9(compo_img_path);
     			} else if(i == 10) {
     				faceWritingDto.setOri_img_path10(ori_img_path);
-    				faceWritingDto.setCompo_img_path10(compo_img_path);
     			}
     			
+    		}
+    		
+    		for(int i=1;i<=compoLen;i++) {
+    			String compo_img_path   = fileUploadService.restore(compoImgFile.get(i-1));
+    			
+    			if(i == 1) {
+    				faceWritingDto.setCompo_img_path1(compo_img_path);
+    			} else if(i == 2) {
+    				faceWritingDto.setCompo_img_path2(compo_img_path);
+    			} else if(i == 3) {
+    				faceWritingDto.setCompo_img_path3(compo_img_path);
+    			} else if(i == 4) {
+    				faceWritingDto.setCompo_img_path4(compo_img_path);    				
+    			} else if(i == 5) {
+    				faceWritingDto.setCompo_img_path5(compo_img_path);
+    			} else if(i == 6) {
+    				faceWritingDto.setCompo_img_path6(compo_img_path);
+    			} else if(i == 7) {
+    				faceWritingDto.setCompo_img_path7(compo_img_path);
+    			} else if(i == 8) {
+    				faceWritingDto.setCompo_img_path8(compo_img_path);
+    			} else if(i == 9) {
+    				faceWritingDto.setCompo_img_path9(compo_img_path);
+    			} else if(i == 10) {
+    				faceWritingDto.setCompo_img_path10(compo_img_path);
+    			}
     		}
     		
 			faceWritingDao.insertWriting(faceWritingDto);

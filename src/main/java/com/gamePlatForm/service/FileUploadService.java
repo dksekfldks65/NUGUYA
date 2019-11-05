@@ -14,12 +14,12 @@ public class FileUploadService {
 	// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
 	
 	//리눅스
-	//private static final String SAVE_PATH =  "/nuguyaUpload";
-	//private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps";
+	private static final String SAVE_PATH =  "/nuguyaUpload";
+	private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps";
 	
 	//윈도우
-	private static final String SAVE_PATH =  "nuguya";
-	private static final String PREFIX_URL = "C:\\";
+	//private static final String SAVE_PATH =  "nuguya";
+	//private static final String PREFIX_URL = "C:\\";
 	
 	public String restore(MultipartFile multipartFile) {
 		String url = null;
@@ -28,10 +28,10 @@ public class FileUploadService {
 			// 파일 정보
 			String originFilename = multipartFile.getOriginalFilename();
 			String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
-			Long size = multipartFile.getSize();
+			String size = Long.toString(multipartFile.getSize());
 			
 			// 서버에서 저장 할 파일 이름
-			String saveFileName = genSaveFileName(extName);
+			String saveFileName = genSaveFileName(size, extName);
 			
 			System.out.println("originFilename : " + originFilename);
 			System.out.println("extensionName : " + extName);
@@ -39,7 +39,7 @@ public class FileUploadService {
 			System.out.println("saveFileName : " + saveFileName);
 			
 			writeFile(multipartFile, saveFileName);
-			url = PREFIX_URL + SAVE_PATH + "/" + saveFileName;
+			url = SAVE_PATH + "/" + saveFileName;
 		}
 		catch (IOException e) {
 			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만
@@ -52,7 +52,7 @@ public class FileUploadService {
 	
 	
 	// 현재 시간을 기준으로 파일 이름 생성
-	private String genSaveFileName(String extName) {
+	private String genSaveFileName(String size, String extName) {
 		String fileName = "";
 		
 		Calendar calendar = Calendar.getInstance();
@@ -63,6 +63,8 @@ public class FileUploadService {
 		fileName += calendar.get(Calendar.MINUTE);
 		fileName += calendar.get(Calendar.SECOND);
 		fileName += calendar.get(Calendar.MILLISECOND);
+		fileName += size;
+
 		fileName += extName;
 		
 		return fileName;

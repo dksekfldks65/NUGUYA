@@ -37,6 +37,8 @@ public class DetailController {
     	
     	faceWritingDto = faceWritingService.getFaceWritingDto(faceWritingDto);
     	
+    	model.addAttribute("faceWritingDto", faceWritingDto);
+    	
         return "/detail";
     }
 
