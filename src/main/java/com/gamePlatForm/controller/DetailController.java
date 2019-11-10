@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gamePlatForm.dto.FaceWritingDto;
+import com.gamePlatForm.dto.SlideFaceWritingDto;
 import com.gamePlatForm.service.FaceWritingService;
 
 /**
@@ -37,7 +38,10 @@ public class DetailController {
     	
     	faceWritingDto = faceWritingService.getFaceWritingDto(faceWritingDto);
     	
+    	List<SlideFaceWritingDto> slideFaceWritingList = faceWritingService.getSlideFaceWritingList(faceWritingDto);
+    	
     	model.addAttribute("faceWritingDto", faceWritingDto);
+    	model.addAttribute("slideFaceWritingList", slideFaceWritingList);
     	
         return "/detail";
     }

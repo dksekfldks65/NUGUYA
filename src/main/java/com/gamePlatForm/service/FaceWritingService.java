@@ -1,6 +1,8 @@
 package com.gamePlatForm.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gamePlatForm.dao.FaceWritingDao;
 import com.gamePlatForm.dto.FaceWritingDto;
+import com.gamePlatForm.dto.SlideFaceWritingDto;
 
 @Service
 public class FaceWritingService {
@@ -171,5 +174,146 @@ public class FaceWritingService {
     	}
     	return faceWritingDto;
     }
-	
+    
+    /*
+     ** 슬라이드 객체 생성
+     */
+    public List<SlideFaceWritingDto> getSlideFaceWritingList(FaceWritingDto faceWritingDto) throws Exception{
+    
+    	//랜덤 보기 리스트 생성
+    	String options = faceWritingDto.getRand_answer();
+    	List<String> optionList = Arrays.asList(options.split(","));
+    	
+    	//상세 페이지 Slide 상세 객체 리스트
+    	List<SlideFaceWritingDto> slideFaceWritingDtoList = new ArrayList<SlideFaceWritingDto>();
+    	
+    	for(int i=1;i<=10;i++) {
+    		
+    		String answer = getAnswer(faceWritingDto, i);
+
+    		if("".equals(answer)) {
+    			continue;
+    		}
+    		
+    		SlideFaceWritingDto curSlideDto = new SlideFaceWritingDto();
+    		//정답 세팅
+    		curSlideDto.setAnswer(answer);
+    		
+    		// 랜덤보기 리스트 셔플 후 앞에 3개만 넣기
+    		Collections.shuffle(optionList); 
+    		curSlideDto.getRand_answer().add(answer);
+    		
+    		for(int j=0;j<3;j++) {
+    			String tempAnswer = optionList.get(j);
+    			curSlideDto.getRand_answer().add(tempAnswer); 
+    		}
+    		
+    		Collections.shuffle(curSlideDto.getRand_answer());
+    		
+    		//합성이미지, 합성전 이미지 path 설정
+    		String ori_img_path    = getOriImgPath(faceWritingDto, i);
+    		String compo_img_path  = getCompoImgPath(faceWritingDto, i);
+    		curSlideDto.setOri_img_path(ori_img_path);
+    		curSlideDto.setCompo_img_path(compo_img_path);
+    		
+    		slideFaceWritingDtoList.add(curSlideDto);
+    	}
+    	
+    	return slideFaceWritingDtoList;
+    }
+    
+    /*
+     ** 인덱스에 따른 정답값 얻어옴
+     */
+    public String getAnswer(FaceWritingDto faceWritingDto, int index) throws Exception{
+    	
+    	String answer="";
+    	
+    	if(index == 1) {
+    		answer = faceWritingDto.getAnswer1();
+    	} else if(index == 2) {
+    		answer = faceWritingDto.getAnswer2();
+    	} else if(index == 3) {
+    		answer = faceWritingDto.getAnswer3();
+    	} else if(index == 4) {
+    		answer = faceWritingDto.getAnswer4();
+    	} else if(index == 5) {
+    		answer = faceWritingDto.getAnswer5();
+    	} else if(index == 6) {
+    		answer = faceWritingDto.getAnswer6();
+    	} else if(index == 7) {
+    		answer = faceWritingDto.getAnswer7();
+    	} else if(index == 8) {
+    		answer = faceWritingDto.getAnswer8();
+    	} else if(index == 9) {
+    		answer = faceWritingDto.getAnswer9();
+    	} else if(index == 10) {
+    		answer = faceWritingDto.getAnswer10();
+    	}
+    	
+    	return answer;
+    }
+    
+    /*
+     ** 인덱스에 따른 합성전 이미지 경로 획득
+     */
+    public String getOriImgPath(FaceWritingDto faceWritingDto, int index) throws Exception{
+    	
+    	String oriImgPath = "";
+		
+    	if(index == 1) {
+    		oriImgPath = faceWritingDto.getOri_img_path1();
+    	} else if(index == 2) {
+    		oriImgPath = faceWritingDto.getOri_img_path2();
+    	} else if(index == 3) {
+    		oriImgPath = faceWritingDto.getOri_img_path3();
+    	} else if(index == 4) {
+    		oriImgPath = faceWritingDto.getOri_img_path4();
+    	} else if(index == 5) {
+    		oriImgPath = faceWritingDto.getOri_img_path5();
+    	} else if(index == 6) {
+    		oriImgPath = faceWritingDto.getOri_img_path6();
+    	} else if(index == 7) {
+    		oriImgPath = faceWritingDto.getOri_img_path7();
+    	} else if(index == 8) {
+    		oriImgPath = faceWritingDto.getOri_img_path8();
+    	} else if(index == 9) {
+    		oriImgPath = faceWritingDto.getOri_img_path9();
+    	} else if(index == 10) {
+    		oriImgPath = faceWritingDto.getOri_img_path10();
+    	}
+    	
+    	return oriImgPath;
+    }
+    
+    /*
+     ** 인덱스에 따른 합성 이미지 경로 획득
+     */
+    public String getCompoImgPath(FaceWritingDto faceWritingDto, int index) throws Exception{
+    	String compoImgPath = "";
+    	
+    	if(index == 1) {
+    		compoImgPath = faceWritingDto.getCompo_img_path1();
+    	} else if(index == 2) {
+    		compoImgPath = faceWritingDto.getCompo_img_path2();
+    	} else if(index == 3) {
+    		compoImgPath = faceWritingDto.getCompo_img_path3();compoImgPath = faceWritingDto.getCompo_img_path1();
+    	} else if(index == 4) {
+    		compoImgPath = faceWritingDto.getCompo_img_path4();
+    	} else if(index == 5) {
+    		compoImgPath = faceWritingDto.getCompo_img_path5();
+    	} else if(index == 6) {
+    		compoImgPath = faceWritingDto.getCompo_img_path6();
+    	} else if(index == 7) {
+    		compoImgPath = faceWritingDto.getCompo_img_path7();
+    	} else if(index == 8) {
+    		compoImgPath = faceWritingDto.getCompo_img_path8();
+    	} else if(index == 9) {
+    		compoImgPath = faceWritingDto.getCompo_img_path9();
+    	} else if(index == 10) {
+    		compoImgPath = faceWritingDto.getCompo_img_path10();
+    	}
+    	
+    	return compoImgPath;
+    }
 }
