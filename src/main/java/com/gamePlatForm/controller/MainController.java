@@ -33,6 +33,7 @@ public class MainController {
     /*
      ** 메인 페이지 이동
      */
+	/*
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String write(HttpSession session, HttpServletRequest request, Model model) throws Exception{
     	
@@ -42,7 +43,21 @@ public class MainController {
     	
         return "/index";
     }
-
+	 */
+    
+	/*
+     ** 메인 페이지 이동
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(HttpSession session, HttpServletRequest request, Model model) throws Exception{
+    	
+    	List<FaceWritingDto> writingDtlDtoList = faceWritingService.getMainFaceWritingList();
+    	
+    	model.addAttribute("writingDtlDtoList", writingDtlDtoList);
+    	
+        return "/home";
+    }
+    
     /*
      ** 메인페이지 비동기 페이징 처리
      */    
