@@ -21,22 +21,16 @@
 
     <main class="home-main">
         <ul class="unit-wrap">
+          <c:forEach items="${writingDtlDtoList}" var="writingDtlDto">
             <li class="unit-wrap_item">
-                <a href="./detail.html">
+                <a href="detail?writing_no=${writingDtlDto.writing_no}">
                     <section class="unit">
-                        <img src="https://placehold.it/170x170" alt="카드 이미지" class="unit_img">
-                        <span class="unit_tit">여자 배우 얼굴 맞추기 블라블라블라블라</span>
+                        <img src="..${writingDtlDto.title_img_path}" alt="카드 이미지" class="unit_img">
+                        <span class="unit_tit">${writingDtlDto.title}</span>
                     </section>
                 </a>
             </li>
-            <li class="unit-wrap_item">
-                <a href="./detail.html">
-                    <section class="unit">
-                        <img src="https://placehold.it/170x170" alt="카드 이미지" class="unit_img">
-                        <span class="unit_tit">여자 배우 얼굴 맞추기 블라블라블라블라</span>
-                    </section>
-                </a>
-            </li>
+          </c:forEach>
         </ul>
     </main>
     
