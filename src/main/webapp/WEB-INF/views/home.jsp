@@ -11,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>누구야 - 인물 맞추기 게임</title>
-<link href="/nuguya/resources/app.css" rel="stylesheet"></head>
-
+	<link href="/nuguya/resources/app.css" rel="stylesheet"></head>
 <body>
 
     <header class="header">
