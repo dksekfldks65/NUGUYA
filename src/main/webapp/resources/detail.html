@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>누구야 - 인물 맞추기 게임</title>
+<link href="/nuguya/resources/app.css" rel="stylesheet"></head>
+
+<body>
+    <header class="header">
+    <h1 class="header_logoname">NUGUYA</h1>
+</header>
+
+    <section class="detail">
+
+        <p class="progress">
+            <span class="progress_current">1</span>
+            <span class="progress_tx">/</span>
+            <span class="progress_total">10</span>
+        </p>
+
+        <main class="detail-main">
+            <!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
+            <section class="unit ok">
+                <img src="https://placehold.it/340x340" alt="카드 이미지" class="unit_img">
+                <button type="button" class="unit_nextbtn">다음문제</button>
+            </section>
+
+            <!-- [D] on : 문제 풀고 나서 추가 -->
+            <ul class="questbtn-area on">
+                <li>
+                    <!-- [D] 문제 틀렸을때 wrong , 맞췄을때 ok 추가 -->
+                    <button type="button" class="questbtn wrong">
+                        <span class="questbtn_tit">윤두준(비스트)</span>
+                        <span class="questbtn_x"></span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="questbtn ok">
+                        <span class="questbtn_tit">정답입니다</span>
+                        <span class="questbtn_o"></span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="questbtn">
+                        <span class="questbtn_tit">틀렸습니다</span>
+                        <span class="questbtn_x"></span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="questbtn">
+                        <span class="questbtn_tit">틀리면X가표시됩니다</span>
+                        <span class="questbtn_x"></span>
+                    </button>
+                </li>
+            </ul>
+        </main>
+
+    </section>
+<script type="text/javascript" src="/nuguya/resources/app.js"></script></body>
+
+</html>
