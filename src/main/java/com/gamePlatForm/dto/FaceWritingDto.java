@@ -5,6 +5,7 @@ import java.util.Date;
 public class FaceWritingDto extends BaseDto{
 
 	private int    writing_no;            //게시글 번호
+	private int    slideSize;             //슬라이드 총 개수
 	private String writing_div_cd;        //게시글 구분코드 10: 얼굴매칭
 	private String title;                 //제목
 	private String answer1;               //정답1
@@ -258,6 +259,12 @@ public class FaceWritingDto extends BaseDto{
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+	public int getSlideSize() {
+		return slideSize;
+	}
+	public void setSlideSize(int slideSize) {
+		this.slideSize = slideSize;
 	}
 	
 }

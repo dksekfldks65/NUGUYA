@@ -40,6 +40,11 @@ public class DetailController {
     	
     	List<SlideFaceWritingDto> slideFaceWritingList = faceWritingService.getSlideFaceWritingList(faceWritingDto);
     	
+    	int slideSize = slideFaceWritingList.size();
+    	
+    	//슬라이드 총 개수
+    	faceWritingDto.setSlideSize(slideSize);
+    	
     	model.addAttribute("faceWritingDto", faceWritingDto);
     	model.addAttribute("slideFaceWritingList", slideFaceWritingList);
     	
