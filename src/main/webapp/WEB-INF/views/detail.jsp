@@ -38,11 +38,11 @@
             </section>
 			
             <ul class="detail-btnarea">
-      		  <c:forEach items="${slideFaceWritingDto.rand_answer}" var="i">
+      		  <c:forEach items="${slideFaceWritingDto.rand_answer}" var="answer">
                 <li>
                     <!-- [D] on : 버튼 활성화-->
                     <button type="button" class="questbtn on">
-                        <span class="questbtn_tit">${i}</span>
+                        <span class="questbtn_tit">${answer}</span>
                         <span class="questbtn_o"></span>
                     </button>
                 </li>
