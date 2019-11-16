@@ -6,6 +6,10 @@ public class FaceWritingDto extends BaseDto{
 
 	private int    writing_no;            //게시글 번호
 	private int    slideSize;             //슬라이드 총 개수
+	private double average;               //맞춘개수 평균
+	private int    score;                 //총점
+	private int    partici_num;           //참여자수
+	private int    parti_score;           //참여자 점수
 	private String writing_div_cd;        //게시글 구분코드 10: 얼굴매칭
 	private String title;                 //제목
 	private String answer1;               //정답1
@@ -265,6 +269,30 @@ public class FaceWritingDto extends BaseDto{
 	}
 	public void setSlideSize(int slideSize) {
 		this.slideSize = slideSize;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public int getPartici_num() {
+		return partici_num;
+	}
+	public void setPartici_num(int partici_num) {
+		this.partici_num = partici_num;
+	}
+	public int getParti_score() {
+		return parti_score;
+	}
+	public void setParti_score(int parti_score) {
+		this.parti_score = parti_score;
+	}
+	public double getAverage() {
+		return average;
+	}
+	public void setAverage(double average) {
+		this.average = average;
 	}
 	
 }

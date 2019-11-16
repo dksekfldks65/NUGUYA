@@ -167,6 +167,8 @@
     	<![CDATA[
     	SELECT  FW.WRITING_NO
 	          , FW.TITLE
+	          , FW.SCORE
+	          , FW.PARTICI_NUM
 	          , FW.WRITING_DIV_CD
 	          , FW.ANSWER1
 	          , FW.ANSWER2
@@ -210,5 +212,13 @@
 		AND		FIP.WRITING_NO = FW.WRITING_NO
     	]]>
     </select>
+    
+    <update id="updateWritingInfo" parameterType="faceWritingDto">
+        /* 총 score 참여자 수 업데이트 com.gamPlatForm.mapper.faceWritingMapper.updateWritingInfo */
+        UPDATE  FACE_WRITING
+        SET     SCORE = SCORE + #{parti_score}
+              , PARTICI_NUM = PARTICI_NUM + 1
+        WHERE   WRITING_NO = #{writing_no}
+    </update>
 
 </mapper>

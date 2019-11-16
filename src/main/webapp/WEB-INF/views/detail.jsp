@@ -32,6 +32,8 @@
 		<c:forEach items="${slideFaceWritingList}" var="slideFaceWritingDto">
 			<main class="detail-main" data-answer=${slideFaceWritingDto.answer}> <!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
 			<section class="unit">
+                <img src="..${slideFaceWritingDto.compo_img_path}" alt="카드 이미지"
+                    class="unit_img">
 				<img src="..${slideFaceWritingDto.ori_img_path}" alt="카드 이미지"
 					class="unit_img">
 				<button type="button" class="unit_nextbtn">다음문제</button>
@@ -74,7 +76,7 @@
 		<main class="result">
 		<h1 class="result_total">10점 만점에</h1>
 		<h1 class="result_current">6점</h1>
-		<p class="result_average">유저 평균 점수 4.5점</p>
+		<p class="result_average">유저 평균 점수 ${faceWritingDto.average}점</p>
 		</main>
 		<ul class="links">
 			<li>

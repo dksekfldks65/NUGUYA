@@ -223,6 +223,24 @@ public class FaceWritingService {
     }
     
     /*
+     ** 참여자 수, 총점 업데이트
+     */
+    public boolean updateWritingInfo(FaceWritingDto faceWritingDto) throws Exception{
+    	boolean isSuccess = false;
+    	
+    	try {
+    		
+    		faceWritingDao.updateWritingInfo(faceWritingDto);
+    	
+    		isSuccess = true;
+    	} catch(Exception e) {
+    		
+    	}
+    	
+    	return isSuccess;
+    }
+    
+    /*
      ** 인덱스에 따른 정답값 얻어옴
      */
     public String getAnswer(FaceWritingDto faceWritingDto, int index) throws Exception{

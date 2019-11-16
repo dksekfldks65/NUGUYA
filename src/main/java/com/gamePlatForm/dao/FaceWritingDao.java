@@ -39,5 +39,10 @@ public class FaceWritingDao {
     public FaceWritingDto getFaceWritingDto(FaceWritingDto faceWritingDto) {
     	return sqlSession.selectOne(Namespace + ".getFaceWritingDto", faceWritingDto);
     }
+    
+    //게시글 정보 업데이트
+    public void updateWritingInfo(FaceWritingDto faceWritingDto) {
+    	sqlSession.update(Namespace+".updateWritingInfo", faceWritingDto);
+    }
 	
 }
