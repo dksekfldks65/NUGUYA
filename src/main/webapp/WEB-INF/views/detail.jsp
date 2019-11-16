@@ -31,7 +31,7 @@
         <main class="detail-main">
           <c:forEach items="${slideFaceWritingList}" var="slideFaceWritingDto">
             <!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
-            <section class="unit ok">
+            <section class="unit ok" data-answer=${slideFaceWritingDto.answer}>
                 <img src="..${slideFaceWritingDto.ori_img_path}" alt="카드 이미지" class="unit_img">
                 <button type="button" class="unit_nextbtn">다음문제</button>
             </section>
