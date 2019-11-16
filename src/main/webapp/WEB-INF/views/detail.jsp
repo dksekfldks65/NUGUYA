@@ -22,7 +22,7 @@
 		<h1 class="header_logoname">NUGUYA</h1>
 	</header>
 
-	<section class="detail">
+	<section class="detail" data-id="${faceWritingDto.writing_no}">
 
 		<p class="progress">
 			<span class="progress_current">1</span> <span class="progress_tx">/</span>
@@ -35,7 +35,7 @@
                 <img src="..${slideFaceWritingDto.compo_img_path}" alt="카드 이미지"
                     class="unit_img">
 				<img src="..${slideFaceWritingDto.ori_img_path}" alt="카드 이미지"
-					class="unit_img">
+					class="unit_img" style="display:none">
 				<button type="button" class="unit_nextbtn">다음문제</button>
 			</section>
 
@@ -113,24 +113,26 @@
 	
 	$('.detail-main').not(':first').hide();
 	$('.resultpage').hide();
+	
 	$('.questbtn-area').on('click', '.questbtn', function(e) {
 		var $btnArea = $(e.delegateTarget);
 		var $btnGroup = $btnArea.find('.questbtn');
 		var $btn = $(e.currentTarget);
 		var $main = $btn.closest('.detail-main');
 		var $unit = $main.find('.unit');
+		var $unitImgs = $unit.find('.unit_img');
 		var $text = $btn.find('.questbtn_tit');
 		var sText = $text.text();
 		var answer = $main.data('answer');
 		
 		$btnArea.addClass('on');
 		$btnGroup.prop('disabled',true);
+		$unitImgs.hide().last().show();
 		
 		if( answer === sText) {
 			$btn.addClass('ok');
 			$unit.addClass('ok')
 			score++;
-			
 		}else {
 			$btn.addClass('wrong');
 			$unit.addClass('wrong')
@@ -142,11 +144,11 @@
 		var $pageNum = $('.progress_current');
 		var $nextBtn = $(e.currentTarget);
 		var $main = $nextBtn.closest('.detail-main');
+		var $detail = $('.detail');
 		var $result = $('.resultpage');
 		var $progress = $('.progress');
 		var nTotal = parseInt($('.progress_total').text(), 10);
 		var nCurrentPage = parseInt($pageNum.text(), 10);
-		  
 
 		if(nCurrentPage === nTotal) {
 			$main.hide();
@@ -159,6 +161,11 @@
 			
 			$total.text(nTotal + "점 만점에");
 			$current.text(score + "점");
+			
+			$.post('/nuguya/updateWritingInfo', {writing_no: $detail.data('id') , parti_score: score},function(data) {
+				data && console.log('스코어 등록 성공');
+			});
+			
 		}else {
 			if(nCurrentPage - 1 === nTotal) {
 				$nextBtn.text('결과보기');
@@ -167,7 +174,6 @@
 			$main.next().show();
 			$main.hide();
 		}
-		
 		
 	});
 	
