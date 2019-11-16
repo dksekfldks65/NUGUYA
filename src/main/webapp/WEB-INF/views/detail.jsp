@@ -16,42 +16,55 @@
 
 <body>
 
-    <ul class="detail">
-        <div class="detail-topinfo">
-            <section class="progbar">
-                <div class="progbar_back">
-                    <div class="progbar_fill"></div>
-                </div>
-                <span class="progbar_count">
-                    <span class="progbar_current">2</span>
-                    /
-                    <span class="progbar_total">${faceWritingDto.slideSize}</span>
-                </span>
-            </section>
-        </div>
+    <header class="header">
+      <h1 class="header_logoname">NUGUYA</h1>
+    </header>
 
-		<c:forEach items="${slideFaceWritingList}" var="slideFaceWritingDto">
-        <!-- [D] on : emoji추가 -->
-        <section class="detail-main on">
-        
-            <section class="unit">
+    <section class="detail">
+
+        <p class="progress">
+            <span class="progress_current">1</span>
+            <span class="progress_tx">/</span>
+            <span class="progress_total">${faceWritingDto.slideSize}</span>
+        </p>
+
+        <main class="detail-main">
+          <c:forEach items="${slideFaceWritingList}" var="slideFaceWritingDto">
+            <!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
+            <section class="unit ok">
                 <img src="..${slideFaceWritingDto.ori_img_path}" alt="카드 이미지" class="unit_img">
+                <button type="button" class="unit_nextbtn">다음문제</button>
             </section>
-			
-            <ul class="detail-btnarea">
-      		  <c:forEach items="${slideFaceWritingDto.rand_answer}" var="answer">
-                <li>
-                    <!-- [D] on : 버튼 활성화-->
-                    <button type="button" class="questbtn on">
-                        <span class="questbtn_tit">${answer}</span>
-                        <span class="questbtn_o"></span>
-                    </button>
-                </li>
-              </c:forEach>
+
+            <!-- [D] on : 문제 풀고 나서 추가 -->
+            <ul class="questbtn-area on">
+              <c:forEach items="${slideFaceWritingDto.rand_answer}" var="randAnswer">
+
+			    <c:choose>
+			        <c:when test="${randAnswer == slideFaceWritingDto.answer}">
+		                <li>
+		                    <button type="button" class="questbtn ok">
+		                        <span class="questbtn_tit">${randAnswer}</span>
+		                        <span class="questbtn_o"></span>
+		                    </button>
+		                </li>
+			        </c:when>
+			        <c:otherwise>
+                        <li>
+                            <!-- [D] 문제 틀렸을때 wrong , 맞췄을때 ok 추가 -->
+                            <button type="button" class="questbtn wrong">
+                                <span class="questbtn_tit">${randAnswer}</span>
+                                <span class="questbtn_x"></span>
+                            </button>
+                        </li>
+			        </c:otherwise>
+			    </c:choose>
+              </c:forEach>    
             </ul>
-			
-        </section>
-		</c:forEach>
+          </c:forEach>
+        </main>
+
+    </section>
 
 </body>
 
