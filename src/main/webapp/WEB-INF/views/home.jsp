@@ -12,6 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>누구야 - 인물 맞추기 게임</title>
 	<link href="/nuguya/resources/app.css" rel="stylesheet"></head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body>
 
     <header class="header">
@@ -35,5 +36,6 @@
     
 
     <script src="<c:url value="/resources/app.js" />"></script>
+    <script src="<c:url value="/resources/server.js" />"></script>
 
 </html>
