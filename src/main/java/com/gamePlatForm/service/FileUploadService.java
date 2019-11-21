@@ -50,7 +50,7 @@ public class FileUploadService {
 			System.out.println("saveFileName : " + saveFileName);
 			
 			writeFile(multipartFile, saveFileName, path);
-			url = "/data/" + path + saveFileName;
+			url = "/data" + path + saveFileName;
 			System.out.println(url);
 						
 		}
