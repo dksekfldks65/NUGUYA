@@ -103,7 +103,7 @@ public class FileUploadService {
 		String month = Integer.toString(cal.get ( cal.MONTH ) + 1);
 		String date = Integer.toString(cal.get ( cal.DATE ));
 		
-		path = path + year + month + date;
+		path = path + year + "/" + month + "/" + date;
 		
 		return path;	
 	}
