@@ -30,7 +30,10 @@ public class FileUploadService {
 
 			// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
 			if (!Folder.exists()) {
-				Folder.mkdir(); //폴더 생성합니다.
+				Folder.mkdirs(); //상위디렉토리 포함 폴더 생성
+				
+				// 폴더 권한 부여			
+				Runtime.getRuntime().exec("chmod -R 777 " + PREFIX_URL + path );
 			}
 			
 			// 파일 정보
@@ -49,6 +52,7 @@ public class FileUploadService {
 			writeFile(multipartFile, saveFileName, path);
 			url = PREFIX_URL + path + saveFileName;
 			System.out.println(url);
+						
 		}
 		catch (IOException e) {
 			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만
