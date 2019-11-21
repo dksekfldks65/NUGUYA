@@ -32,8 +32,13 @@ public class FaceWritingService {
     public void insertWriting(FaceWritingDto faceWritingDto, MultipartHttpServletRequest multipartRequest) throws Exception{
     	
     	try {
+    		
+    		//저장 경로 생성
+    		String appName = "nuguya";
+    		String path = fileUploadService.makeSaveFilePath(appName);
+    		
     		//제목 이미지 업로드 및 경로 세팅
-    		String title_img_path = fileUploadService.restore(multipartRequest.getFile("title_img_file"));
+    		String title_img_path = fileUploadService.restore(multipartRequest.getFile("title_img_file"), path);
     		faceWritingDto.setTitle_img_path(title_img_path);
     		
     		List<MultipartFile> oriImgFile   = multipartRequest.getFiles("ori_img_file");
@@ -62,7 +67,7 @@ public class FaceWritingService {
     		}
     		
     		for(int i=1;i<=oriLen;i++) {
-    			String ori_img_path   = fileUploadService.restore(oriImgFile.get(i-1));
+    			String ori_img_path   = fileUploadService.restore(oriImgFile.get(i-1), path);
     			
     			if(i == 1) {
     				faceWritingDto.setOri_img_path1(ori_img_path);
@@ -89,7 +94,7 @@ public class FaceWritingService {
     		}
     		
     		for(int i=1;i<=compoLen;i++) {
-    			String compo_img_path   = fileUploadService.restore(compoImgFile.get(i-1));
+    			String compo_img_path   = fileUploadService.restore(compoImgFile.get(i-1), path);
     			
     			if(i == 1) {
     				faceWritingDto.setCompo_img_path1(compo_img_path);

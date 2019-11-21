@@ -1,5 +1,6 @@
 package com.gamePlatForm.service;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
@@ -14,17 +15,24 @@ public class FileUploadService {
 	// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
 	
 	//리눅스
-	private static final String SAVE_PATH =  "/nuguyaUpload";
-	private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps";
+	private static final String PREFIX_URL = "/home/ubuntu/tomcat8/webapps/data";
 	
 	//윈도우
 	//private static final String SAVE_PATH =  "nuguya";
 	//private static final String PREFIX_URL = "C:\\";
 	
-	public String restore(MultipartFile multipartFile) {
+	public String restore(MultipartFile multipartFile, String path) {
 		String url = null;
 		
 		try {
+			
+			File Folder = new File(PREFIX_URL + path);
+
+			// 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+			if (!Folder.exists()) {
+				Folder.mkdir(); //폴더 생성합니다.
+			}
+			
 			// 파일 정보
 			String originFilename = multipartFile.getOriginalFilename();
 			String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
@@ -38,8 +46,9 @@ public class FileUploadService {
 			System.out.println("size : " + size);
 			System.out.println("saveFileName : " + saveFileName);
 			
-			writeFile(multipartFile, saveFileName);
-			url = SAVE_PATH + "/" + saveFileName;
+			writeFile(multipartFile, saveFileName, path);
+			url = PREFIX_URL + path + saveFileName;
+			System.out.println(url);
 		}
 		catch (IOException e) {
 			// 원래라면 RuntimeException 을 상속받은 예외가 처리되어야 하지만
@@ -72,15 +81,30 @@ public class FileUploadService {
 	
 	
 	// 파일을 실제로 write 하는 메서드
-	private boolean writeFile(MultipartFile multipartFile, String saveFileName)
+	private boolean writeFile(MultipartFile multipartFile, String saveFileName, String path)
 								throws IOException{
 		boolean result = false;
 
 		byte[] data = multipartFile.getBytes();
-		FileOutputStream fos = new FileOutputStream(PREFIX_URL + SAVE_PATH + "/" + saveFileName);
+		FileOutputStream fos = new FileOutputStream(PREFIX_URL + path + "/" + saveFileName);
 		fos.write(data);
 		fos.close();
 		
 		return result;
+	}
+	
+	//앱이름과 년도일을 이용한 path 생성
+	public String makeSaveFilePath(String appName) {
+		
+		String path = "/" + appName + "/";
+		Calendar cal = Calendar.getInstance(); 
+		//현재 년도, 월, 일
+		String year = Integer.toString(cal.get ( cal.YEAR ));
+		String month = Integer.toString(cal.get ( cal.MONTH ) + 1);
+		String date = Integer.toString(cal.get ( cal.DATE ));
+		
+		path = path + year + month + date;
+		
+		return path;	
 	}
 }
