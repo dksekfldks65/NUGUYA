@@ -137,7 +137,7 @@
 				<img src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
 			  </button>
 			</li>
-			<li>
+			<li> 
 			  <a id="kakao-link-btn" href="javascript:sendLink()">
 			    <img src="//dev.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
 			  </a>
