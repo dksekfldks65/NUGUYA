@@ -13,28 +13,29 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>누구야 - 인물 맞추기 게임</title>
 <link href="/nuguya/resources/app.css" rel="stylesheet">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
 <script type='text/javascript'>
   //<![CDATA[
-	  
-	var thisTitle = ${faceWritingDto.writing_no};
-    var url = window.location.href;
 	  
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('2154a19a8b424f820604283812388ab4');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
     function sendLink() {
+
+      var title = ${faceWritingDto.title};
+      var url = window.location.href;
+      
       Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-          title: '딸기 치즈 케익',
+          title: '케익234',
           description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
           imageUrl: 'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: url,
+            webUrl: url
           }
         },
         social: {
@@ -45,14 +46,14 @@
         buttons: [{
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: url,
+            webUrl: url
           }
         }, {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: url,
+            webUrl: url
           }
         }]
       });
@@ -133,18 +134,13 @@
 				</button>
 			</li>
 			<li>
-			  <button class="links_link">
+			  <button class="links_link" onclick="javascript:sendLink()">
 				<img src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
 			  </button>
 			</li>
-			<li> 
-			  <a id="kakao-link-btn" href="javascript:sendLink()">
-			    <img src="//dev.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
-			  </a>
-			</li>
 		</ul>
 		<div class="section result-options">
-			<button type="button" class="questbtn">
+			<button type="button" class="questbtn" onclick="location.href='/nuguya'">
 				<span class="questbtn_tit">메인으로 이동</span>
 			</button>
 			<button type="button" class="questbtn">
