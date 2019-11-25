@@ -14,12 +14,58 @@
 <title>누구야 - 인물 맞추기 게임</title>
 <link href="/nuguya/resources/app.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+      
+    var thisTitle = ${faceWritingDto.writing_no};
+    var url = window.location.href;
+    
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('2154a19a8b424f820604283812388ab4');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: thisTitle,
+        description: '#'+ thisTitle,
+        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        link: {
+          mobileWebUrl: url,
+          webUrl: url
+        }
+      },
+      social: {
+        likeCount: 0,
+        commentCount: 0,
+        sharedCount: 0
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: url,
+            webUrl: url
+          }
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: url,
+            webUrl: url
+          }
+        }
+      ]
+    });
+  //]]>
+</script>
+
 </head>
 
 <body>
 
 	<header class="header">
-		<h1 class="header_logoname">NUGUYA</h1>
+		<a href="/nuguya"><h1 class="header_logoname">NUGUYA</h1></a>
 	</header>
 
 	<section class="detail" data-id="${faceWritingDto.writing_no}">
@@ -87,11 +133,13 @@
 				</button>
 			</li>
 			<li>
+			    <a id="kakao-link-btn" href="javascript:;">
 				<button class="links_link">
 					<img
 						src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a"
 						alt="">
 				</button>
+				</a>
 			</li>
 		</ul>
 		<div class="section result-options">
