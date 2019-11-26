@@ -25,7 +25,7 @@
             <li class="unit-wrap_item">
                 <a href="detail?writing_no=${writingDtlDto.writing_no}">
                     <section class="unit">
-                        <img src="..${writingDtlDto.title_img_path}" alt="카드 이미지" class="unit_img unit_img--sm">
+                        <img src="/resources/${writingDtlDto.title_img_path}" alt="카드 이미지" class="unit_img unit_img--sm">
                         <span class="unit_tit">${writingDtlDto.title}</span>
                     </section>
                 </a>

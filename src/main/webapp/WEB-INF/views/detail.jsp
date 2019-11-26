@@ -74,9 +74,9 @@
 	<section class="resultpage">
 		<header class="title">${faceWritingDto.title}</header>
 		<main class="result">
-		<h1 class="result_total">10점 만점에</h1>
-		<h1 class="result_current">6점</h1>
-		<p class="result_average">유저 평균 점수 ${faceWritingDto.average}점</p>
+			<h1 class="result_total">10점 만점에</h1>
+			<h1 class="result_current">6점</h1>
+			<p class="result_average">유저 평균 점수 ${faceWritingDto.average}점</p>
 		</main>
 		<ul class="links">
 			<li>
