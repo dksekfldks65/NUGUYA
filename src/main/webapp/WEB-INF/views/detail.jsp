@@ -24,24 +24,26 @@
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
     function sendLink() {
 
-      var title = ${faceWritingDto.title};
+      var titleObj = document.getElementById('title');
+      var title = titleObj.dataset.title;
+      var titleImgUrl = 'http://2weeks.io' + titleObj.dataset.path;
       var url = window.location.href;
       
       Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-          title: '케익234',
-          description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-          imageUrl: 'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+          title: title,
+          description: '#연예인얼굴맞추기 #누구야 #2weeks.io #유튜브게임 #연예인 #얼굴맞추기',
+          imageUrl: titleImgUrl,
           link: {
             mobileWebUrl: url,
             webUrl: url
           }
         },
         social: {
-          likeCount: 286,
-          commentCount: 45,
-          sharedCount: 845
+          likeCount: 1043,
+          commentCount: 32,
+          sharedCount: 84
         },
         buttons: [{
           title: '웹으로 보기',
@@ -119,20 +121,13 @@
 
 
 	<section class="resultpage">
-		<header class="title">${faceWritingDto.title}</header>
+		<header class="title" id="title" data-title="${faceWritingDto.title}" data-path="${faceWritingDto.title_img_path}">${faceWritingDto.title}</header>
 		<main class="result">
 		<h1 class="result_total">10점 만점에</h1>
 		<h1 class="result_current">6점</h1>
 		<p class="result_average">유저 평균 점수 ${faceWritingDto.average}점</p>
 		</main>
 		<ul class="links">
-			<li>
-				<button class="links_link">
-					<img
-						src="/nuguya/resources/facebook@2x.png?67ecca68db8c9c32d18b89f0fc48d356"
-						alt="">
-				</button>
-			</li>
 			<li>
 			  <button class="links_link" onclick="javascript:sendLink()">
 				<img src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
@@ -142,9 +137,6 @@
 		<div class="section result-options">
 			<button type="button" class="questbtn" onclick="location.href='/nuguya'">
 				<span class="questbtn_tit">메인으로 이동</span>
-			</button>
-			<button type="button" class="questbtn">
-				<span class="questbtn_tit">한 번 더 하기</span>
 			</button>
 		</div>
 	</section>
