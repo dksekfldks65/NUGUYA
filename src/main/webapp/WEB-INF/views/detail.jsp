@@ -81,8 +81,8 @@
 			<main class="detail-main" data-answer="${slideFaceWritingDto.answer}">
 				<!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
 				<section class="unit">
-					<img src="http://2weeks.io${slideFaceWritingDto.compo_img_path}" alt="카드 이미지" class="unit_img">
-					<img src="http://2weeks.io${slideFaceWritingDto.ori_img_path}" alt="카드 이미지" class="unit_img" style="display:none">
+					<div style="background-image: url('http://2weeks.io${slideFaceWritingDto.compo_img_path}');" alt="카드 이미지" class="unit_img"></div>
+					<div style="background-image: url('http://2weeks.io${slideFaceWritingDto.ori_img_path}'); display:none;" alt="카드 이미지" class="unit_img"></div>
 					<button type="button" class="unit_nextbtn">다음문제</button>
 				</section>
 
@@ -130,11 +130,11 @@
 	              </button>
 				</li>
 			</ul>
-		</div>
-		<div class="section result-options">
-			<button type="button" class="questbtn" onclick="location.href='/nuguya'">
-				<span class="questbtn_tit">메인으로 이동</span>
-			</button>
+			<div class="section result-options">
+				<button type="button" class="questbtn" onclick="location.href='/nuguya'">
+					<span class="questbtn_tit">메인으로 이동</span>
+				</button>
+			</div>
 		</div>
 		
 	</section>
