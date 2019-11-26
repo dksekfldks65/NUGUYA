@@ -12,6 +12,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>누구야 - 인물 맞추기 게임</title>
 	<link href="/nuguya/resources/app.css" rel="stylesheet"></head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153425898-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-153425898-1');
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body>
 
