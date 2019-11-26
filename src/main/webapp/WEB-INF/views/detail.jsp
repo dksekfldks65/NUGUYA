@@ -160,8 +160,7 @@
 <script src="<c:url value="/resources/server.js" />"></script>
 <script type="text/javascript">
 function handleFacebook() {
-	var now = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href + ";src=sdkpreparse";
-	debugger;
+	var now = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
 	location.href= now;
 }
 	var score = 0;
