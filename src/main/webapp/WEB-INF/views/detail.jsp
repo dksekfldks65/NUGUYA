@@ -78,7 +78,7 @@
 		</p>
 
 		<c:forEach items="${slideFaceWritingList}" var="slideFaceWritingDto">
-			<main class="detail-main" data-answer=${slideFaceWritingDto.answer}>
+			<main class="detail-main" data-answer="${slideFaceWritingDto.answer}">
 				<!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
 				<section class="unit">
 					<img src="http://2weeks.io${slideFaceWritingDto.compo_img_path}" alt="카드 이미지" class="unit_img">
