@@ -16,7 +16,7 @@
 <body>
 
     <header class="header">
-    <h1 class="header_logoname">NUGUYA</h1>
+    <a href="/nuguya"><h1 class="header_logoname">NUGUYA</h1></a>
 </header>
 
     <main class="home-main">
