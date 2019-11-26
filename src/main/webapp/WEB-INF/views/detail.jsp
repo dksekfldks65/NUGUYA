@@ -172,7 +172,7 @@
 		$btnGroup.prop('disabled', true);
 		$unitImgs.hide().last().show();
 
-		if (answer === sText) {
+		if (answer == sText) {
 			$btn.addClass('ok');
 			$unit.addClass('ok')
 			score++;
