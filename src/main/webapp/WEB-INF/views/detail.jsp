@@ -8,7 +8,6 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -32,7 +31,7 @@
         objectType: 'feed',
         content: {
           title: title,
-          description: '#연예인얼굴맞추기 #누구야 #2weeks.io #유튜브게임 #연예인 #얼굴맞추기',
+          description: '#2weeks.io #연예인얼굴맞추기 #누구야 #유튜브게임 #연예인 #얼굴맞추기',
           imageUrl: titleImgUrl,
           link: {
             mobileWebUrl: url,
@@ -82,8 +81,8 @@
 			<main class="detail-main" data-answer=${slideFaceWritingDto.answer}>
 				<!-- [D] 틀렸을때 wrong, 맞췄을때 ok -->
 				<section class="unit">
-					<img src="..${slideFaceWritingDto.compo_img_path}" alt="카드 이미지" class="unit_img">
-					<img src="..${slideFaceWritingDto.ori_img_path}" alt="카드 이미지" class="unit_img" style="display:none">
+					<img src="http://2weeks.io${slideFaceWritingDto.compo_img_path}" alt="카드 이미지" class="unit_img">
+					<img src="http://2weeks.io${slideFaceWritingDto.ori_img_path}" alt="카드 이미지" class="unit_img" style="display:none">
 					<button type="button" class="unit_nextbtn">다음문제</button>
 				</section>
 
@@ -118,8 +117,8 @@
 	<section class="resultpage">
 		<header class="title" id="title" data-title="${faceWritingDto.title}" data-path="${faceWritingDto.title_img_path}">${faceWritingDto.title}</header>
 		<main class="result">
-			<h1 class="result_total">10점 만점에</h1>
-			<h1 class="result_current">6점</h1>
+			<h1 class="result_total">${faceWritingDto.slideSize}점 만점에</h1>
+			<h1 class="result_current">점</h1>
 			<p class="result_average">유저 평균 점수 ${faceWritingDto.average}점</p>
 		</main>
 
