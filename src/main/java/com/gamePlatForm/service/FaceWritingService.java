@@ -320,7 +320,7 @@ public class FaceWritingService {
     	} else if(index == 2) {
     		compoImgPath = faceWritingDto.getCompo_img_path2();
     	} else if(index == 3) {
-    		compoImgPath = faceWritingDto.getCompo_img_path3();compoImgPath = faceWritingDto.getCompo_img_path1();
+    		compoImgPath = faceWritingDto.getCompo_img_path3();
     	} else if(index == 4) {
     		compoImgPath = faceWritingDto.getCompo_img_path4();
     	} else if(index == 5) {
