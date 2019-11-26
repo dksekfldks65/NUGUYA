@@ -132,6 +132,11 @@
 
 		<div class="resultpage_right">
 			<ul class="links">
+			    <li>
+                  <button class="links_link" onclick="javascript:sendLink()">
+                    <img src="/nuguya/resources/facebook@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
+                  </button>
+                </li>
 				<li>
 	              <button class="links_link" onclick="javascript:sendLink()">
 	                <img src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
