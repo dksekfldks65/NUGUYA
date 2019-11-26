@@ -28,8 +28,11 @@
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('2154a19a8b424f820604283812388ab4');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    
     function sendLink() {
-
+   	  var total = $('.result_total').text().slice(0,2);
+      var current = $('.result_current').text().slice(0,1);
+      var desc = "내 점수는 " + total + "점 만점에 " + current + "점! 너도 한번 맞춰볼래?";
       var titleObj = document.getElementById('title');
       var title = titleObj.dataset.title;
       var titleImgUrl = 'http://2weeks.io' + titleObj.dataset.path;
@@ -39,7 +42,7 @@
         objectType: 'feed',
         content: {
           title: title,
-          description: '#2weeks.io #연예인얼굴맞추기 #누구야 #유튜브게임 #연예인 #얼굴맞추기',
+          description: desc,
           imageUrl: titleImgUrl,
           link: {
             mobileWebUrl: url,
