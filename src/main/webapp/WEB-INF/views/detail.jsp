@@ -15,6 +15,7 @@
 <link href="/nuguya/resources/app.css" rel="stylesheet">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153425898-1"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -135,6 +136,12 @@
 
 		<div class="resultpage_right">
 			<ul class="links">
+			    <li>
+                  <button class="links_link" data-href="https://developers.facebook.com/docs/plugins/" 
+                   data-layout="button_count" data-size="small" onclick="handleFacebook();" style="display:block">
+                    <img src="/nuguya/resources/facebook@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
+                  </button>
+                </li>
 				<li>
 	              <button class="links_link" onclick="javascript:sendLink()">
 	                <img src="/nuguya/resources/kakao@2x.png?45d79b3e6d1a4c4ecdfe7ae38810d55a" alt="">
@@ -155,6 +162,10 @@
 <script src="<c:url value="/resources/app.js" />"></script>
 <script src="<c:url value="/resources/server.js" />"></script>
 <script type="text/javascript">
+function handleFacebook() {
+	var now = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
+	location.href= now;
+}
 	var score = 0;
 
 	$('.detail-main').not(':first').hide();
