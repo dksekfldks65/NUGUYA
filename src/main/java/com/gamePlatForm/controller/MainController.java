@@ -69,4 +69,10 @@ public class MainController {
         return writingDtlDtoList;
     }
     
+    @RequestMapping(value = "/faceShare", method = RequestMethod.GET)
+    public String faceShare(HttpSession session, HttpServletRequest request, Model model) throws Exception{
+    	
+        return "/faceShare";
+    }
+    
 }
