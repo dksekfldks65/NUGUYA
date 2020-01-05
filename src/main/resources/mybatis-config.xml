@@ -3,16 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
     <configuration>
-    
-	    <settings>
-		    <setting name="cacheEnabled" value="false" />
-		    <setting name="lazyLoadingEnabled" value="false" />
-		    <setting name="useGeneratedKeys" value="false" />
-		    <setting name="defaultExecutorType" value="REUSE" />
-		    <setting name="mapUnderscoreToCamelCase" value="true" /> <!-- db column 의 xx_yy 형식을 camelCase xxYY 형식으로 자동 매핑 -->
-		    <setting name="localCacheScope" value="STATEMENT" />
-		</settings>
-	    
+        
         <typeAliases>
 			<typeAlias type="com.gamePlatForm.dto.FaceWritingDto" alias="faceWritingDto"/>
         </typeAliases>
