@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    
-    <!-- log4jdbc-log4j2 -->
-    <logger name="jdbc.sqlonly"     level="DEBUG" />
-    <logger name="jdbc.sqltiming"     level="INFO" />
-    <logger name="jdbc.audit"         level="WARN" />
-    <logger name="jdbc.resultset"     level="ERROR" />
-    <logger name="jdbc.resultsettable" level="ERROR" />
-    <logger name="jdbc.connection"     level="INFO" />
- 
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>### %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </layout>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">       
+        <file>/home/mydir/logs/my-web.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>my-web.%d{yyyy-MM-dd}.log</fileNamePattern>
+        <!-- 30일 지난 파일은 삭제한다.  -->
+         <maxHistory>30</maxHistory>
+        </rollingPolicy>        
+        <encoder>
+        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-4level [%logger.%method:%line] - %msg %n</pattern>
+        </encoder>          
+    </appender>
+
+    <!--    RULES for logging DEBUG < INFO < WARN < ERROR < FATAL.-->
+    <logger name="jdbc.sqltiming" level="OFF" />
+    <logger name="jdbc.audit" level="OFF" />
+    <logger name="jdbc.resultset" level="OFF" />
+    <logger name="jdbc.connection" level="OFF" />
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
 </configuration>
